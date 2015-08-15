@@ -1,0 +1,8 @@
+source https://nuget.org/api/v2
+
+nuget FsReveal
+nuget FAKE
+nuget Suave
+
+github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi
+github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs
