@@ -7,8 +7,20 @@
 
 ***
 
-## Table of content
+## Table of content 2015
 
-* [ F# Type Providers: The Current State ](/typeproviders.html)
+* [ F# Type Providers: The Current State](typeproviders.html) (8/15/2015)
+
+***
+
+## Archive
+
+* [How to NLProc from .NET](http://www.slideshare.net/sergeytihon/nlpnet) (5/28/2015)
+* [Type providers(from the very beginning to the impl)](http://www.slideshare.net/sergeytihon/type-providersfrom-the-very-beginning-to-the-implementation) (11/12/2014)
+* [F# for Data*](http://www.slideshare.net/sergeytihon/f-for-data) (10/25/2014)
+* [FAKE (F# Make) & Automation](http://www.slideshare.net/sergeytihon/fake-f-make-automation) (5/22/2014)
+* [FSSF community overview](http://www.slideshare.net/sergeytihon/fssf-community-overview) (10/10/2013)
+* [printfn "Hello World"](http://www.slideshare.net/sergeytihon/printfn-hello-world) (10/10/2013)
+* [Declarative authorization in SharePoint REST services](http://www.slideshare.net/sergeytihon/declarative-authorization-insharepointrestservices) (6/27/2013)
 
 ***
