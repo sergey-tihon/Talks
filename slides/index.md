@@ -9,7 +9,7 @@
 
 ## Table of content 2016
 
-* [Angular2 with TypeScript & RxJs in VS Code](angular2-intro.html) (2/24/2016)
+* [Angular2 with TypeScript & RxJs in VS Code](Angular2-intro.html) (2/24/2016)
 
 ***
 
