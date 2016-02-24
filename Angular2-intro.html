@@ -1,0 +1,815 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Angular2 with TypeScript &amp; RxJs in VS Code</title>
+    <meta name="description" content="">
+    <meta name="author" content="Sergey Tihon">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+        
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h2>Angular2</h2>
+<h3>TypeScript &amp; RxJS &amp; VS Code</h3>
+<h4>by <a href="https://twitter.com/sergey_tihon">@sergey-tihon</a></h4>
+</section>
+<section >
+<section >
+<h2>Prerequisites</h2>
+</section>
+<section >
+<p><img src="images/ang2/nodejs-new-white-pantone.png" alt="node" /></p>
+<p>Event-driven I/O server-side JavaScript environment
+<a href="https://nodejs.org/en/download/"><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></a></p>
+</section>
+<section >
+<p><img src="images/ang2/npm-logo.svg" alt="npm" /></p>
+<p>Package manager</p>
+<p><code>npm install npm -g</code></p>
+</section>
+</section>
+<section >
+<section >
+<h2>TypeScript</h2>
+<p><em>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</em>
+<em>Any browser. Any host. Any OS. Open Source.</em></p>
+<p><a href="http://www.typescriptlang.org/">www.typescriptlang.org</a></p>
+<p><code>npm install -g typescript</code></p>
+</section>
+<section >
+<h2>Conclusion = <code>Adopted</code></h2>
+<p>Use it in all new projects instead of JavaScript.</p>
+<p><img src="images/ang2/HappySherlock.gif" alt="HappySherlock" /></p>
+<p>TypeScript comes to you with <code>modularity</code>, <code>correctness</code>, <code>refactoring</code>, <code>intellisense</code>, support of <code>future EcmaScripts</code></p>
+</section>
+<section >
+<h3>Types, Lambdas and Type Inference</h3>
+<p>JavaScript</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="javascript">let hello<span class="n">2</span> <span class="o">=</span> <span class="k">function</span>(name) {
+    <span class="k">return</span> <span class="s">"Hello "</span> <span class="o">+</span> name;
+}
+</code></pre></td></tr></table>
+<p>TypeScript</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">let hello = (name:string) =&gt; "Hello, " + name;
+// string =&gt; string
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Interfaces</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">interface SPSearchRequest {
+    SourceId?: string;
+    EnableSorting : boolean;
+    Querytext: string;
+    RefinementFilters: SPResultsWrapperObject;
+    HiddenConstraints: string;
+    RowLimit: number;
+    SelectProperties: SPResultsWrapperObject;
+    HitHighlightedProperties: SPResultsWrapperObject;
+    SummaryLength: number;
+    EnableQueryRules: boolean;
+    StartRow?: number;
+    Refiners?: string;
+    SortList?: {results:SortByDirection[]} // &lt;--
+    TrimDuplicatesIncludeId?: string;
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Generic Types</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">class Parent&lt;T&gt; {
+    children: T[];
+    constructor() {
+        this.children = [];
+    }
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Structural Typing (Duck typing)</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">interface Named {
+    name: string;
+}
+
+class Person {
+    name: string;
+}
+
+var p: Named;
+// OK, because of structural typing
+p = new Person();
+</code></pre></td></tr></table>
+</section>
+</section>
+<section >
+<section >
+<h2><a href="https://code.visualstudio.com/">Visual Studio Code</a></h2>
+<h4>Code Editing. Redefined.</h4>
+<p><img src="images/ang2/Happy.gif" alt="Happy" /></p>
+</section>
+<section >
+<p><img src="images/ang2/vscode.ico" alt="VSCode" /></p>
+<p>VS Code includes support for debugging, embedded Git control, syntax highlighting, intelligent code completion, snippets, and code refactoring.
+It is also customizable, so users can change the editor's theme, keyboard shortcuts, and preferences.</p>
+</section>
+<section >
+<p><img src="images/ang2/codebasics_layout.png" alt="VSCode" /></p>
+</section>
+<section >
+<h2>IntelliSense</h2>
+<p><img src="images/ang2/editingevolved_intellisense.gif" alt="intellisense" /></p>
+</section>
+<section >
+<h2>Go to Definition</h2>
+<p><img src="images/ang2/editingevolved_ctrlhover.png" alt="ctrlhover" /></p>
+</section>
+<section >
+<h2>Peek Definition</h2>
+<p><img src="images/ang2/editingevolved_references.png" alt="references" /></p>
+</section>
+<section >
+<h2>Reference information</h2>
+<p><img src="images/ang2/editingevolved_referenceinfo.png" alt="referenceinfo" /></p>
+</section>
+<section >
+<h2>Rename refactoring</h2>
+<p><img src="images/ang2/editingevolved_rename.png" alt="rename" /></p>
+</section>
+<section >
+<h2>Debugging</h2>
+<p><img src="images/ang2/vscode_debugging.png" alt="vscode_debugging" /></p>
+</section>
+<section >
+<h2>Git version control</h2>
+<p><img src="images/ang2/vscode_git.png" alt="vscode_git" /></p>
+</section>
+<section >
+<h2>Configurable</h2>
+<p>The <code>.vscode/settings.json</code> file allows to configure:</p>
+<ul>
+<li><strong>Editor Configuration</strong> - font, wrapping, tab size, line numbers, ...</li>
+<li><strong>Files Configuration</strong> - exclude filters, encoding, trailing whitespace</li>
+<li><strong>HTTP Configuration</strong> - Proxy settings</li>
+<li><strong>File Explorer Configuration</strong> - Working Files behavior</li>
+<li><strong>Search Configuration</strong> - file exclude filters</li>
+<li><strong>CSS Configuration</strong> - CSS linting configuration</li>
+<li><strong>JavaScript Configuration</strong> - Language specific settings</li>
+<li><strong>JSON Configuration</strong> - Schemas associated with certain JSON files</li>
+<li><strong>Less/Sass Configuration</strong> - Control linting for Less/Sass</li>
+<li><strong>TypeScript Configuration</strong> - Language specific settings</li>
+</ul>
+</section>
+</section>
+<section >
+<section >
+<h1>Angular 2</h1>
+<h2><a href="https://angular.io/docs/ts/latest/quickstart.html">5min QuickStart</a></h2>
+<p><a href="https://angular.io/">angular.io</a></p>
+</section>
+<section >
+<h3>Configure TypeScript</h3>
+<p><code>tsconfig.json</code></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">{
+<span class="s">&quot;compilerOptions&quot;</span><span class="o">:</span> {
+    <span class="s">&quot;target&quot;</span><span class="o">:</span> <span class="s">&quot;es5&quot;</span>,
+    <span class="s">&quot;module&quot;</span><span class="o">:</span> <span class="s">&quot;system&quot;</span>,
+    <span class="s">&quot;moduleResolution&quot;</span><span class="o">:</span> <span class="s">&quot;node&quot;</span>,
+    <span class="s">&quot;sourceMap&quot;</span><span class="o">:</span> <span class="k">true</span>,
+    <span class="s">&quot;emitDecoratorMetadata&quot;</span><span class="o">:</span> <span class="k">true</span>,
+    <span class="s">&quot;experimentalDecorators&quot;</span><span class="o">:</span> <span class="k">true</span>,
+    <span class="s">&quot;removeComments&quot;</span><span class="o">:</span> <span class="k">false</span>,
+    <span class="s">&quot;noImplicitAny&quot;</span><span class="o">:</span> <span class="k">false</span>
+},
+<span class="s">&quot;exclude&quot;</span><span class="o">:</span> [
+    <span class="s">&quot;node_modules&quot;</span>,
+    <span class="s">&quot;typings/main&quot;</span>,
+    <span class="s">&quot;typings/main.d.ts&quot;</span>
+]
+}
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h3>TypeScript Typings</h3>
+<p><code>typings.json</code></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">{
+  <span class="s">&quot;ambientDependencies&quot;</span><span class="o">:</span> {
+    <span class="s">&quot;es6-shim&quot;</span><span class="o">:</span> <span class="s">&quot;github:DefinitelyTyped/DefinitelyTyped/es6-shim/</span>
+<span class="s">es6-shim.d.ts#6697d6f7dadbf5773cb40ecda35a76027e0783b2&quot;</span>
+  }
+}
+</code></pre></td>
+</tr>
+</table>
+<p><code>tsconfig.json</code></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">{
+  <span class="s">&quot;scripts&quot;</span><span class="o">:</span> {
+    <span class="s">&quot;postinstall&quot;</span><span class="o">:</span> <span class="s">&quot;npm run typings install&quot;</span>
+  }
+}
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h3>Dependencies <code>package.json</code></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">{
+<span class="o">..</span><span class="o">.</span>
+<span class="s">&quot;dependencies&quot;</span><span class="o">:</span> {
+    <span class="s">&quot;angular2&quot;</span><span class="o">:</span> <span class="s">&quot;2.0.0-beta.7&quot;</span>, <span class="c">// Released 23.02.2016</span>
+    <span class="s">&quot;systemjs&quot;</span><span class="o">:</span> <span class="s">&quot;0.19.22&quot;</span>,
+    <span class="s">&quot;es6-promise&quot;</span><span class="o">:</span> <span class="s">&quot;^3.0.2&quot;</span>,
+    <span class="s">&quot;es6-shim&quot;</span><span class="o">:</span> <span class="s">&quot;^0.33.3&quot;</span>,
+    <span class="s">&quot;reflect-metadata&quot;</span><span class="o">:</span> <span class="s">&quot;0.1.2&quot;</span>,
+    <span class="s">&quot;rxjs&quot;</span><span class="o">:</span> <span class="s">&quot;5.0.0-beta.2&quot;</span>,
+    <span class="s">&quot;zone.js&quot;</span><span class="o">:</span> <span class="s">&quot;0.5.15&quot;</span>
+},
+<span class="s">&quot;devDependencies&quot;</span><span class="o">:</span> {
+    <span class="s">&quot;concurrently&quot;</span><span class="o">:</span> <span class="s">&quot;^2.0.0&quot;</span>,
+    <span class="s">&quot;lite-server&quot;</span><span class="o">:</span> <span class="s">&quot;^2.1.0&quot;</span>,
+    <span class="s">&quot;typescript&quot;</span><span class="o">:</span> <span class="s">&quot;^1.7.5&quot;</span>,
+    <span class="s">&quot;typings&quot;</span><span class="o">:</span><span class="s">&quot;^0.6.8&quot;</span>
+}
+}
+</code></pre></td>
+</tr>
+</table>
+<p><code>npm install</code></p>
+</section>
+<section >
+<h3>Scripts <code>package.json</code></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">{
+<span class="s">&quot;name&quot;</span><span class="o">:</span> <span class="s">&quot;angular2-quickstart&quot;</span>,
+<span class="s">&quot;version&quot;</span><span class="o">:</span> <span class="s">&quot;1.0.0&quot;</span>,
+<span class="s">&quot;scripts&quot;</span><span class="o">:</span> {
+    <span class="s">&quot;postinstall&quot;</span><span class="o">:</span> <span class="s">&quot;npm run typings install&quot;</span>,
+    <span class="s">&quot;tsc&quot;</span><span class="o">:</span> <span class="s">&quot;tsc&quot;</span>,
+    <span class="s">&quot;tsc:w&quot;</span><span class="o">:</span> <span class="s">&quot;tsc -w&quot;</span>,
+    <span class="s">&quot;lite&quot;</span><span class="o">:</span> <span class="s">&quot;lite-server&quot;</span>,
+    <span class="s">&quot;start&quot;</span><span class="o">:</span> <span class="s">&quot;concurrent \&quot;npm run tsc:w\&quot; \&quot;npm run lite\&quot; &quot;</span>,
+    <span class="s">&quot;typings&quot;</span> <span class="o">:</span> <span class="s">&quot;typings&quot;</span>
+},
+<span class="s">&quot;license&quot;</span><span class="o">:</span> <span class="s">&quot;ISC&quot;</span>,
+<span class="o">..</span><span class="o">.</span>
+}
+</code></pre></td>
+</tr>
+</table>
+<p><code>npm start</code></p>
+</section>
+<section >
+<h2>First component</h2>
+<h3><code>app/app.component.ts</code></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">import {Component} from 'angular2/core';
+
+@Component({
+    selector: 'my-app',
+    template: '&lt;h1&gt;My First Angular 2 App&lt;/h1&gt;'
+})
+export class AppComponent { }
+</code></pre></td></tr></table>
+</section>
+<section >
+<h2>Bootstrap it</h2>
+<h3><code>app/main.ts</code></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">import {bootstrap}    from 'angular2/platform/browser'
+import {AppComponent} from './app.component'
+
+bootstrap(AppComponent);
+</code></pre></td></tr></table>
+<p>Platform specific bootstrap Browser, Apache Cordova, NativeScript or server-side rendering.</p>
+</section>
+<section >
+<h3><code>index.html</code></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="html"><span class="k">&lt;</span><span class="i">html</span><span class="k">&gt;</span> <span class="k">&lt;</span><span class="i">head</span><span class="k">&gt;</span>
+    <span class="k">&lt;</span><span class="i">title</span><span class="k">&gt;</span>Angular 2 QuickStart<span class="k">&lt;/</span><span class="i">title</span><span class="k">&gt;</span>
+    <span class="c">&lt;!-- 1. Load libraries --&gt;</span>
+    <span class="c">&lt;!-- 2. Configure SystemJS --&gt;</span>
+    <span class="k">&lt;</span><span class="i">script</span><span class="k">&gt;</span>
+    System.config({
+        packages: {        
+        app: {
+            format: <span class="s">'register'</span>,
+            defaultExtension: <span class="s">'js'</span>
+        }}
+    });
+    System.import(<span class="s">'app/main'</span>)
+            .then(<span class="k">null</span>, console.error.bind(console));
+    <span class="k">&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">head</span><span class="k">&gt;</span>
+<span class="c">&lt;!-- 3. Display the application --&gt;</span>
+<span class="k">&lt;</span><span class="i">body</span><span class="k">&gt;</span>
+    <span class="k">&lt;</span><span class="i">my-app</span><span class="k">&gt;</span>Loading...<span class="k">&lt;/</span><span class="i">my-app</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">body</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">html</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
+</section>
+</section>
+<section >
+<section >
+<h1>Angular 2</h1>
+<h2>Cool stuff</h2>
+</section>
+<section >
+<h3>RxJS : Reactive Extensions for JavaScript</h3>
+</section>
+<section >
+<h3><code>Http.get</code> returns <code>Observable&lt;Response&gt;</code></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">interface QuerySuggestion {
+    Query:string;
+}
+@Injectable()
+export class SPSuggestionService {
+    constructor(private _http:Http) { }
+    public getSuggestedQueries(queryText:string, count:number = 5) 
+      : Rx.Observable&lt;QuerySuggestion[]&gt; 
+    {
+        var headers = new Headers();
+        headers.append('Accept', 'application/json;odata=verbose');
+        return this._http.get(
+                "https://contoso.com/_api/search/suggest"
+                + "?fprequerysuggestions=true"
+                + "&amp;inumberofquerysuggestions="+count
+                + "&amp;querytext='"+queryText.replace("'","''")+"'",
+                { headers: headers })
+            .map(res =&gt; 
+              &lt;QuerySuggestion[]&gt; res.json().d.suggest.Queries.results);
+    };
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">import * as Rx from 'rxjs/Rx';
+
+export class SearchComponent implements OnInit {
+    queryText = new Control("");
+    querySuggestions$: Rx.Observable&lt;QuerySuggestion&gt;;
+    
+    ngOnInit() {
+        this.querySuggestions$ =
+            this.queryText.valueChanges
+                .debounceTime(400)
+                .distinctUntilChanged()
+                .filter((value:string) =&gt; value.length &gt;= MinQueryLength)
+                .switchMap((value:string) =&gt;
+                     this._suggestionService.getSuggestedQueries(value));
+    }
+</code></pre></td></tr></table>
+<p>Binding</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">&lt;</span><span class="i">li</span> <span class="o">*</span><span class="i">ngFor</span><span class="o">=</span><span class="s">&quot;#item of querySuggestions$ | async&quot;</span><span class="o">&gt;</span>
+    {{<span class="i">item</span><span class="o">.</span><span class="i">Query</span>}}
+<span class="o">&lt;/</span><span class="i">li</span><span class="o">&gt;</span>
+</code></pre></td>
+</tr>
+</table>
+</section>
+<section >
+<h3><a href="http://info.meteor.com/blog/comparing-performance-of-blaze-react-angular-meteor-and-angular-2-with-meteor">Performance</a></h3>
+<p><img src="images/ang2/ang2-perf.png" alt="Ang2 Perf" /></p>
+</section>
+<section >
+<h2>Immutable.js</h2>
+<h3>Controlling Change Detection</h3>
+<ul>
+<li><a href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Change Detection in Angular 2</a></li>
+<li><a href="http://victorsavkin.com/post/133936129316/angular-immutability-and-encapsulation">Angular, Immutability and Encapsulation</a></li>
+<li><a href="http://victorsavkin.com/post/108837493941/better-support-for-functional-programming-in">Better Support for Functional Programming in Angular 2</a></li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="typescript">@Component({
+  selector: 'person',
+  template: `{{person.name}}`,
+  changeDetection: ChangeDetectionStrategy.OnPush // ⇐===
+})
+class DisplayPerson {
+</code></pre></td></tr></table>
+</section>
+<section >
+<h3>Hierarchical injectors</h3>
+<p><img src="images/ang2/arch-overview.png" alt="Arch" /></p>
+</section>
+<section >
+<h3>Routing components</h3>
+<p><img src="images/ang2/angular2-routing-diagram.png" alt="Routing" /></p>
+<p><a href="https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/">Component Router In-Depth</a></p>
+</section>
+<section >
+<h3><a href="https://github.com/Microsoft/TypeScript/issues/6508">TypeScript Extensibility</a> is coming</h3>
+<p><img src="images/ang2/ts-ext.gif" alt="TS Ext" /></p>
+</section>
+<section >
+<h2>When release ?</h2>
+<p><img src="images/ang2/ng-conf.png" alt="ng-conf" /></p>
+</section>
+</section>
+<section >
+<section >
+<h3>SharePoint 2013 - Integration Challenges</h3>
+<h4>Same Origin Policy &amp; Authentication - <code>CORS</code></h4>
+<p><a href="http://www.silver-it.com/node/152"><a href="http://www.silver-it.com/node/152">http://www.silver-it.com/node/152</a></a></p>
+</section>
+<section >
+<h2>CORS recap</h2>
+<p><img src="images/ang2/cors.png" alt="CORS" /></p>
+</section>
+<section >
+<h2>Solution 1</h2>
+</section>
+<section >
+<p>Adding the necessary HTTP response headers <code>Access-Control-Allow-Headers</code>,
+<code>Access-Control-Allow-Methods</code> and <code>Access-Control-Allow-Origin</code> at IIS level.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">&lt;</span><span class="i">system</span><span class="o">.</span><span class="i">webServer</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="i">httpProtocol</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="i">customHeaders</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="i">add</span> <span class="i">name</span><span class="o">=</span><span class="s">&quot;Access-Control-Allow-Origin&quot;</span>  <span class="i">value</span><span class="o">=</span><span class="s">&quot;http://localhost:3000&quot;</span> <span class="o">/&gt;</span>
+         <span class="o">&lt;</span><span class="i">add</span> <span class="i">name</span><span class="o">=</span><span class="s">&quot;Access-Control-Allow-Headers&quot;</span> 
+              <span class="i">value</span><span class="o">=</span><span class="s">&quot;Content-Type, Accept, X-Requested-With, X-File-Name&quot;</span><span class="o">/&gt;</span>
+         <span class="o">&lt;</span><span class="i">add</span> <span class="i">name</span><span class="o">=</span><span class="s">&quot;Access-Control-Allow-Methods&quot;</span>     <span class="i">value</span><span class="o">=</span><span class="s">&quot;GET, POST&quot;</span><span class="o">/&gt;</span>
+         <span class="o">&lt;</span><span class="i">add</span> <span class="i">name</span><span class="o">=</span><span class="s">&quot;Access-Control-Allow-Credentials&quot;</span> <span class="i">value</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="o">/&gt;</span>
+     <span class="o">&lt;/</span><span class="i">customHeaders</span><span class="o">&gt;</span>
+</code></pre></td>
+</tr>
+</table>
+<p>In a SharePoint context, you can add those headers for a given web app using the IIS console</p>
+</section>
+<section >
+<p>Develop a HTTP module to work around the authentication problem regarding the preflight requests</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">class</span> CORSPreflightModule <span class="o">:</span> IHttpModule
+{
+  <span class="k">private</span> <span class="k">const</span> <span class="k">string</span> OPTIONSHEADER <span class="o">=</span> <span class="s">"OPTIONS"</span>;
+  <span class="k">private</span> <span class="k">const</span> <span class="k">string</span> ORIGINHEADER <span class="o">=</span> <span class="s">"ORIGIN"</span>;
+  <span class="k">private</span> <span class="k">const</span> <span class="k">string</span> ALLOWEDORIGIN <span class="o">=</span> <span class="s">"http://localhost:3000"</span>;
+  <span class="k">void</span> IHttpModule.Dispose() { }
+
+  <span class="k">void</span> IHttpModule.Init(HttpApplication context) {
+    context.PreSendRequestHeaders <span class="o">+</span><span class="o">=</span> (sender, e) <span class="o">=</span><span class="o">&gt;</span> {
+      <span class="k">var</span> response <span class="o">=</span> context.Response;
+
+      <span class="k">if</span> (context.Request.HttpMethod.ToUpperInvariant() 
+            <span class="o">=</span><span class="o">=</span> OPTIONSHEADER.ToUpperInvariant() <span class="o">&amp;</span><span class="o">&amp;</span>
+          context.Request.Headers[ORIGINHEADER] <span class="o">=</span><span class="o">=</span> ALLOWEDORIGIN)
+        { response.StatusCode <span class="o">=</span> (<span class="k">int</span>)HttpStatusCode.OK; }
+    };
+  }
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<h2>Solution 2</h2>
+<h3><code>Reverse Proxy</code></h3>
+<h3>Fiddler</h3>
+</section>
+<section >
+<ul>
+<li>Open Fiddler, Rules, Customize Rules</li>
+<li>Find the <code>OnBeforeResponse</code> function and add the following</li>
+</ul>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="javascript"><span class="k">static</span> <span class="k">function</span> SetCORSResponseHeaders(oSession: Session,origin: String)  {
+  oSession.oResponse.headers.Add(<span class="s">"Access-Control-Allow-Headers"</span>,
+                                 <span class="s">"Content-Type,Authorization,X-RequestDigest"</span>);
+  oSession.oResponse.headers.Add(<span class="s">"Access-Control-Allow-Methods"</span>,
+                                 <span class="s">"GET,POST,PUT,DELETE,MERGE, Options"</span>);
+  oSession.oResponse.headers.Add(<span class="s">"Access-Control-Allow-Origin"</span>,origin);
+  oSession.oResponse.headers.Add(<span class="s">"Access-Control-Allow-Credentials"</span>,<span class="k">true</span>);   
+}
+<span class="k">static</span> <span class="k">function</span> OnBeforeResponse(oSession: Session) {
+  <span class="k">var</span> origin:String=<span class="s">"http://localhost:3000"</span>; <span class="c">//do not include a ending / character</span>
+  <span class="c">//in this case, we know we're in a CORS context since the origin header was sent</span>
+  <span class="k">if</span>(oSession.oRequest.headers[<span class="s">"Origin"</span>] <span class="o">!</span><span class="o">=</span> <span class="s">''</span>) {
+     SetCORSResponseHeaders(oSession,origin);
+     <span class="c">//In case we receive a preflight request</span>
+     <span class="k">if</span>(oSession.oRequest.headers.HTTPMethod=<span class="o">=</span><span class="s">'OPTIONS'</span>   
+        <span class="o">&amp;</span><span class="o">&amp;</span> oSession.oRequest.headers[<span class="s">"Origin"</span>]<span class="o">=</span>=origin) {    
+       oSession.oResponse.headers.HTTPResponseCode  <span class="o">=</span> <span class="n">200</span>;
+       oSession.oResponse.headers.HTTPResponseStatus <span class="o">=</span> <span class="s">"200 OK"</span>; 
+     }
+  }
+</code></pre></td></tr></table>
+</section>
+</section>
+<section >
+<h2>Questions?</h2>
+<p><img src="images/ang2/coffee.gif" alt="Thanks" /></p>
+<p><a href="https://twitter.com/sergey_tihon">@sergey-tihon</a></p>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
+

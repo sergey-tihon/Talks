@@ -38,7 +38,7 @@
     <script language="javascript" type="text/javascript">
         function init()
         {
-            websocket = new WebSocket("ws://localhost:8083/websocket");
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
             websocket.onmessage = function(evt) { location.reload(); };
         }
         window.addEventListener("load", init, false);
@@ -50,20 +50,15 @@
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
-
-<h2>Table of content 2015</h2>
-
+<h2>Table of content 2016</h2>
 <ul>
-<li><a href="typeproviders.html"> F# Type Providers: The Current State</a> (8/15/2015)</li>
+<li><a href="angular2-intro.html">Angular2 with TypeScript &amp; RxJs in VS Code</a> (2/24/2016)</li>
 </ul>
-
 </section>
-
 <section >
-
 <h2>Archive</h2>
-
 <ul>
+<li><a href="typeproviders.html">F# Type Providers: The Current State</a> (8/15/2015)</li>
 <li><a href="http://www.slideshare.net/sergeytihon/nlpnet">How to NLProc from .NET</a> (5/28/2015)</li>
 <li><a href="http://www.slideshare.net/sergeytihon/type-providersfrom-the-very-beginning-to-the-implementation">Type providers(from the very beginning to the impl)</a> (11/12/2014)</li>
 <li><a href="http://www.slideshare.net/sergeytihon/f-for-data">F# for Data*</a> (10/25/2014)</li>
@@ -72,9 +67,7 @@
 <li><a href="http://www.slideshare.net/sergeytihon/printfn-hello-world">printfn "Hello World"</a> (10/10/2013)</li>
 <li><a href="http://www.slideshare.net/sergeytihon/declarative-authorization-insharepointrestservices">Declarative authorization in SharePoint REST services</a> (6/27/2013)</li>
 </ul>
-
 </section>
-
 
 
         </div>
