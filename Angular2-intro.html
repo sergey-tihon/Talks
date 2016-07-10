@@ -98,8 +98,8 @@
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">let hello = (name:string) =&gt; "Hello, " + name;
-// string =&gt; string
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">let</span> hello <span class="o">=</span> (name:<span class="k">string</span>) <span class="o">=</span><span class="o">&gt;</span> <span class="s">"Hello, "</span> <span class="o">+</span> name;
+<span class="c">// string =&gt; string</span>
 </code></pre></td></tr></table>
 </section>
 <section >
@@ -121,21 +121,21 @@
 <span class="l">15: </span>
 <span class="l">16: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">interface SPSearchRequest {
-    SourceId?: string;
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">interface</span> SPSearchRequest {
+    SourceId?: <span class="k">string</span>;
     EnableSorting : boolean;
-    Querytext: string;
+    Querytext: <span class="k">string</span>;
     RefinementFilters: SPResultsWrapperObject;
-    HiddenConstraints: string;
+    HiddenConstraints: <span class="k">string</span>;
     RowLimit: number;
     SelectProperties: SPResultsWrapperObject;
     HitHighlightedProperties: SPResultsWrapperObject;
     SummaryLength: number;
     EnableQueryRules: boolean;
     StartRow?: number;
-    Refiners?: string;
-    SortList?: {results:SortByDirection[]} // &lt;--
-    TrimDuplicatesIncludeId?: string;
+    Refiners?: <span class="k">string</span>;
+    SortList?: {results:SortByDirection[]} <span class="c">// &lt;--</span>
+    TrimDuplicatesIncludeId?: <span class="k">string</span>;
 }
 </code></pre></td></tr></table>
 </section>
@@ -148,10 +148,10 @@
 <span class="l">5: </span>
 <span class="l">6: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">class Parent&lt;T&gt; {
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">class</span> Parent&lt;T&gt; {
     children: T[];
-    constructor() {
-        this.children = [];
+    <span class="k">constructor</span>() {
+        <span class="k">this</span>.children <span class="o">=</span> [];
     }
 }
 </code></pre></td></tr></table>
@@ -170,17 +170,17 @@
 <span class="l">10: </span>
 <span class="l">11: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">interface Named {
-    name: string;
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">interface</span> Named {
+    name: <span class="k">string</span>;
 }
 
-class Person {
-    name: string;
+<span class="k">class</span> Person {
+    name: <span class="k">string</span>;
 }
 
-var p: Named;
-// OK, because of structural typing
-p = new Person();
+<span class="k">var</span> p: Named;
+<span class="c">// OK, because of structural typing</span>
+p <span class="o">=</span> <span class="k">new</span> Person();
 </code></pre></td></tr></table>
 </section>
 </section>
@@ -417,13 +417,13 @@ It is also customizable, so users can change the editor's theme, keyboard shortc
 <span class="l">6: </span>
 <span class="l">7: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">import {Component} from 'angular2/core';
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">import</span> {Component} <span class="k">from</span> <span class="s">'angular2/core'</span>;
 
 @Component({
-    selector: 'my-app',
-    template: '&lt;h1&gt;My First Angular 2 App&lt;/h1&gt;'
+    selector: <span class="s">'my-app'</span>,
+    template: '&lt;h<span class="n">1</span>&gt;My First Angular <span class="n">2</span> App&lt;/h<span class="n">1</span>&gt;'
 })
-export class AppComponent { }
+<span class="k">export</span> <span class="k">class</span> AppComponent { }
 </code></pre></td></tr></table>
 </section>
 <section >
@@ -434,8 +434,8 @@ export class AppComponent { }
 <span class="l">3: </span>
 <span class="l">4: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">import {bootstrap}    from 'angular2/platform/browser'
-import {AppComponent} from './app.component'
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">import</span> {bootstrap}    <span class="k">from</span> <span class="s">'angular2/platform/browser'</span>
+<span class="k">import</span> {AppComponent} <span class="k">from</span> <span class="s">'./app.component'</span>
 
 bootstrap(AppComponent);
 </code></pre></td></tr></table>
@@ -521,25 +521,25 @@ bootstrap(AppComponent);
 <span class="l">20: </span>
 <span class="l">21: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">interface QuerySuggestion {
-    Query:string;
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">interface</span> QuerySuggestion {
+    Query:<span class="k">string</span>;
 }
 @Injectable()
-export class SPSuggestionService {
-    constructor(private _http:Http) { }
-    public getSuggestedQueries(queryText:string, count:number = 5) 
-      : Rx.Observable&lt;QuerySuggestion[]&gt; 
+<span class="k">export</span> <span class="k">class</span> SPSuggestionService {
+    <span class="k">constructor</span>(<span class="k">private</span> _http:Http) { }
+    <span class="k">public</span> getSuggestedQueries(queryText:<span class="k">string</span>, count:number <span class="o">=</span> <span class="n">5</span>) 
+      : Rx.Observable&lt;QuerySuggestion[]<span class="o">&gt;</span> 
     {
-        var headers = new Headers();
-        headers.append('Accept', 'application/json;odata=verbose');
-        return this._http.get(
-                "https://contoso.com/_api/search/suggest"
-                + "?fprequerysuggestions=true"
-                + "&amp;inumberofquerysuggestions="+count
-                + "&amp;querytext='"+queryText.replace("'","''")+"'",
+        <span class="k">var</span> headers <span class="o">=</span> <span class="k">new</span> Headers();
+        headers.append(<span class="s">'Accept'</span>, <span class="s">'application/json;odata=verbose'</span>);
+        <span class="k">return</span> <span class="k">this</span>._http.get(
+                <span class="s">"https://contoso.com/_api/search/suggest"</span>
+                <span class="o">+</span> <span class="s">"?fprequerysuggestions=true"</span>
+                <span class="o">+</span> <span class="s">"&amp;inumberofquerysuggestions="</span>+count
+                <span class="o">+</span> <span class="s">"&amp;querytext='"</span>+queryText.replace(<span class="s">"'"</span>,<span class="s">"''"</span>)<span class="o">+</span><span class="s">"'"</span>,
                 { headers: headers })
-            .map(res =&gt; 
-              &lt;QuerySuggestion[]&gt; res.json().d.suggest.Queries.results);
+            .map(res <span class="o">=</span><span class="o">&gt;</span> 
+              &lt;QuerySuggestion[]<span class="o">&gt;</span> res.json().d.suggest.Queries.results);
     };
 }
 </code></pre></td></tr></table>
@@ -561,20 +561,20 @@ export class SPSuggestionService {
 <span class="l">14: </span>
 <span class="l">15: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">import * as Rx from 'rxjs/Rx';
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">import</span> <span class="o">*</span> <span class="k">as</span> Rx <span class="k">from</span> <span class="s">'rxjs/Rx'</span>;
 
-export class SearchComponent implements OnInit {
-    queryText = new Control("");
+<span class="k">export</span> <span class="k">class</span> SearchComponent <span class="k">implements</span> OnInit {
+    queryText <span class="o">=</span> <span class="k">new</span> Control(<span class="s">""</span>);
     querySuggestions$: Rx.Observable&lt;QuerySuggestion&gt;;
     
     ngOnInit() {
-        this.querySuggestions$ =
-            this.queryText.valueChanges
-                .debounceTime(400)
+        <span class="k">this</span>.querySuggestions$ <span class="o">=</span>
+            <span class="k">this</span>.queryText.valueChanges
+                .debounceTime(<span class="n">400</span>)
                 .distinctUntilChanged()
-                .filter((value:string) =&gt; value.length &gt;= MinQueryLength)
-                .switchMap((value:string) =&gt;
-                     this._suggestionService.getSuggestedQueries(value));
+                .filter((value:<span class="k">string</span>) <span class="o">=</span><span class="o">&gt;</span> value.length <span class="o">&gt;</span><span class="o">=</span> MinQueryLength)
+                .switchMap((value:<span class="k">string</span>) <span class="o">=</span><span class="o">&gt;</span>
+                     <span class="k">this</span>._suggestionService.getSuggestedQueries(value));
     }
 </code></pre></td></tr></table>
 <p>Binding</p>
@@ -608,12 +608,12 @@ export class SearchComponent implements OnInit {
 <span class="l">5: </span>
 <span class="l">6: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="typescript">@Component({
-  selector: 'person',
+<td class="snippet"><pre class="fssnip highlighted"><code lang="typescript">@Component({
+  selector: <span class="s">'person'</span>,
   template: `{{person.name}}`,
-  changeDetection: ChangeDetectionStrategy.OnPush // ⇐===
+  changeDetection: ChangeDetectionStrategy.OnPush <span class="c">// ⇐===</span>
 })
-class DisplayPerson {
+<span class="k">class</span> DisplayPerson {
 </code></pre></td></tr></table>
 </section>
 <section >
